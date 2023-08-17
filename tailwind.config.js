@@ -9,10 +9,15 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      gridTemplateColumns: {
+        sidebar: '240px auto', // 👈 for sidebar layout. adds grid-cols-sidebar class
+      },
+      gridTemplateRows: {
+        header: '120px auto', // 👈 for the navbar layout. adds grid-rows-header class
       },
     },
   },
   plugins: [],
-}
+};
