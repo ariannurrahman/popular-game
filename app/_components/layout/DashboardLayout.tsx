@@ -6,7 +6,7 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import { Footer, Header, Sidebar, TopProgressBar } from '..';
 
 const DashboardLayout = (props: PropsWithChildren) => {
-  const [isShowSidebar, setIsShowSidebar] = useState(false);
+  const [isShowSidebar, setIsShowSidebar] = useState(true);
 
   const segment = useSelectedLayoutSegment();
 
