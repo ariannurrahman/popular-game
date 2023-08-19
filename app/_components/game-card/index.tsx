@@ -45,9 +45,9 @@ const GameCard = ({ data }: GameCardProps) => {
       onMouseOut={onMouseOut}
       onMouseOver={() => onMouseOver(data)}
       className={classNames({
-        'z-10 h-[320px] transition-all': isActiveCard,
-        'relative bg-slate-300': true,
-        'rounded-lg rounded-t-md shadow-lg': true,
+        'z-10  transition-all': isActiveCard,
+        'relative h-[316px] bg-slate-300': true,
+        'rounded-lg rounded-t-md shadow-md': true,
         'scale-y-105 shadow-lg': isActiveCard,
       })}
     >
@@ -67,7 +67,7 @@ const GameCard = ({ data }: GameCardProps) => {
           )}
         </div>
         <div className='px-5 py-3'>
-          <p className='mb-3 text-center font-bold text-gray-800'>
+          <p className='mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-bold text-gray-800 '>
             {data?.name}
           </p>
           <div className='flex flex-row items-center justify-between'>

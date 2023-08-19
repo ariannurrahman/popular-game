@@ -12,9 +12,11 @@ export async function getData() {
 export async function Page() {
   const { data } = await getData();
   return (
-    <main>
-      <h1>New and Trending</h1>
-      <div className='relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'>
+    <main className='w-full p-0 sm:p-3'>
+      <h1 className='my-5 text-center text-3xl font-bold md:text-start'>
+        New and Trending
+      </h1>
+      <div className='relative z-10 grid grid-cols-1 justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'>
         {data?.results?.map((data) => {
           return <GameCard key={data.id} data={data} />;
         })}

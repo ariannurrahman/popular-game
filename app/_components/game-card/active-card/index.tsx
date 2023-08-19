@@ -28,7 +28,7 @@ export const ActiveCard = ({
   return (
     <div
       className={classNames({
-        'h-[120px] w-full transition-all': isActive,
+        'h-[120px] transition-all': isActive,
         'absolute left-0 right-0 z-40 -mt-1 overflow-hidden bg-slate-300':
           isActive,
         'rounded-b-md': isActive,

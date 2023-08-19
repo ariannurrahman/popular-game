@@ -6,8 +6,8 @@ interface PlatformIconProps {
   platform: TPlatform;
 }
 
-const HEIGHT = '24';
-const WIDTH = '24';
+const HEIGHT = '20';
+const WIDTH = '20';
 
 const PlatformIcon = ({ platform }: PlatformIconProps) => {
   return PARENT_PLATFORM_SLUG[platform] ? (
