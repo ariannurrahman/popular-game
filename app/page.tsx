@@ -1,15 +1,16 @@
 import { GameCard } from './_components';
 import { IGames } from './_types/games';
 
-export async function getData() {
+async function getData() {
   const res = await fetch(
-    'https://api.rawg.io/api/games?page=1&page_size=10&key=439740e4165a4a219d5331c543990dcc'
+    'https://api.rawg.io/api/games?page=1&page_size=10&key=439740e4165a4a219d5331c543990dcc',
+    { cache: 'force-cache' }
   );
   const data: IGames = await res.json();
   return { data };
 }
 
-export async function Page() {
+export default async function Page() {
   const { data } = await getData();
   return (
     <main className='w-full p-0 sm:p-3'>
@@ -24,5 +25,3 @@ export async function Page() {
     </main>
   );
 }
-
-export default Page;

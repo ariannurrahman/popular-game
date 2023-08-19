@@ -38,8 +38,6 @@ const GameCard = ({ data }: GameCardProps) => {
     setActiveCard(undefined);
   };
 
-  console.log('activeCard', activeCard);
-
   return (
     <div
       onMouseOut={onMouseOut}
