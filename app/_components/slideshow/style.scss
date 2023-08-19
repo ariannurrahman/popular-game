@@ -1,0 +1,12 @@
+.slide-container {
+  display: block;
+
+  .slick-dots li button:before {
+    background-color: black;
+    height: 4px;
+    width: 12px;
+    border-radius: 8px;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+}

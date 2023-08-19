@@ -5,3 +5,5 @@ export * from './layout/DashboardLayout';
 export * from './top-progress-bar';
 export * from './game-card';
 export * from './platform-icon';
+export * from './slideshow';
+export * from './rating';

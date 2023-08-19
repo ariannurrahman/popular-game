@@ -8,15 +8,22 @@ interface IHeader {
 
 const Header = ({ handleShowSidebar }: IHeader) => {
   return (
-    <header className='bg-gray-100 border flex flex-row justify-between items-center gap-5 drop-shadow-md px-2 sm:px-8'>
+    <header className='flex flex-row items-center justify-between gap-5 border bg-gray-100 px-2 drop-shadow-md sm:px-8'>
       <div>
-        <Image priority src='/an.svg' alt='logo' className='object-contain' width={80} height={20} />
+        <Image
+          priority
+          src='/an.svg'
+          alt='logo'
+          className='object-contain'
+          width={80}
+          height={20}
+        />
       </div>
-      <div className='md:w-[300px] lg:w-[500px] relative'>
-        <AiOutlineSearch className='absolute pl-5 py-5 z-10' />
+      <div className='relative md:w-[300px] lg:w-[500px]'>
+        <AiOutlineSearch className='absolute z-10 py-5 pl-5' />
         <input
           placeholder='Search your favorite game...'
-          className='relative rounded-full px-5 w-full h-10 bg-gray-300 hover:bg-gray-200 focus:bg-gray-200 outline-none'
+          className='relative h-10 w-full rounded-md bg-gray-300 px-5 outline-none hover:bg-gray-200 focus:bg-gray-200'
         />
       </div>
       <button className='md:hidden' onClick={handleShowSidebar}>
