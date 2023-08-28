@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 
 import { IGameResults } from '@/app/_types/games';
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import classNames from 'classnames';
 import { PlatformIcon, Rating, Slideshow } from '..';
 import { TPlatform } from '@/app/_types/platform';
 import { ActiveCard } from './active-card';
+import Link from 'next/link';
 
 interface GameCardProps {
   data: IGameResults;
@@ -17,7 +19,6 @@ const IMAGE_HEIGHT = 'h-56'; // 14 rem
 
 const GameCard = ({ data }: GameCardProps) => {
   const [activeCard, setActiveCard] = useState<IGameResults | undefined>();
-
   const isActiveCard = useMemo(() => {
     return activeCard?.id === data.id;
   }, [data, activeCard?.id]);
@@ -30,27 +31,35 @@ const GameCard = ({ data }: GameCardProps) => {
       .sort();
   }, [data]);
 
-  const onMouseOver = (data: IGameResults) => {
-    setActiveCard(data);
-  };
+  const onMouseOver = () => setActiveCard(data);
 
-  const onMouseOut = () => {
-    setActiveCard(undefined);
-  };
+  const onMouseOut = () => setActiveCard(undefined);
+
+  const onClickViewMore = () => onMouseOver();
+
+  const onClickViewLess = () => onMouseOut();
 
   return (
     <div
-      onMouseOut={onMouseOut}
-      onMouseOver={() => onMouseOver(data)}
+      onMouseOut={isMobile ? undefined : onMouseOut}
+      onMouseOver={isMobile ? undefined : onMouseOver}
       className={classNames({
-        'z-10  transition-all': isActiveCard,
-        'relative h-[316px] bg-slate-300': true,
-        'rounded-lg rounded-t-md shadow-md': true,
-        'scale-y-105 shadow-lg': isActiveCard,
+        'z-10 transition-all': isActiveCard,
+        'relative bg-slate-800': true,
+        'rounded-b-lg rounded-t-lg shadow-md': true,
+        'scale-y-105 rounded-b-none shadow-lg': isActiveCard,
+        'h-[340]px': isMobile,
+        'h-[330]px': !isMobile,
       })}
     >
       <div className='z-10'>
-        <div className={`${IMAGE_HEIGHT} rounded-t-sm' w-full`}>
+        <div
+          className={classNames({
+            'w-full rounded-t-sm': true,
+            'h-50': isActiveCard,
+            'h-56': !isActiveCard,
+          })}
+        >
           {activeCard ? (
             <Slideshow data={activeCard?.short_screenshots} />
           ) : (
@@ -64,11 +73,14 @@ const GameCard = ({ data }: GameCardProps) => {
             />
           )}
         </div>
-        <div className='px-5 py-3'>
-          <p className='mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-bold text-gray-800 '>
+        <div className='px-5 py-3 text-center'>
+          <Link
+            href={`/game/${data.id}`}
+            className='overflow-hidden text-ellipsis whitespace-nowrap font-bold text-slate-100 hover:text-slate-300'
+          >
             {data?.name}
-          </p>
-          <div className='flex flex-row items-center justify-between'>
+          </Link>
+          <div className='mt-3 flex flex-row items-center justify-between'>
             <div className='flex flex-row flex-nowrap items-center justify-center gap-3'>
               {sortedPlatformName?.map((slug) => (
                 <PlatformIcon key={slug} platform={slug} />
@@ -76,13 +88,29 @@ const GameCard = ({ data }: GameCardProps) => {
             </div>
             <Rating rating={data?.metacritic} />
           </div>
+          <div
+            className={classNames({
+              'mt-2': true,
+              'relative mt-3 sm:hidden': !activeCard,
+              hidden: activeCard,
+            })}
+          >
+            <p
+              onClick={onClickViewMore}
+              className='text-sm text-slate-100 underline'
+            >
+              View More
+            </p>
+          </div>
         </div>
       </div>
       {isActiveCard && (
         <ActiveCard
+          isMobile={isMobile}
           imgHeight={IMAGE_HEIGHT}
           isActive={isActiveCard}
           data={activeCard}
+          onClickViewLess={onClickViewLess}
         />
       )}
     </div>

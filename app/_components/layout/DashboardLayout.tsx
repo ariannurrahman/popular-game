@@ -13,17 +13,17 @@ const DashboardLayout = (props: PropsWithChildren) => {
   const handleShowSidebar = () => setIsShowSidebar((prevState) => !prevState);
 
   return (
-    <>
-      <TopProgressBar />
-      <div className='grid min-h-screen grid-rows-header'>
-        <Header handleShowSidebar={handleShowSidebar} />
-        <div className='grid sm:grid-cols-1 md:grid-cols-sidebar'>
-          <Sidebar isOpen={isShowSidebar} activeSegment={segment} />
-          <div className='md:m-3 lg:m-5'>{props.children}</div>
-        </div>
-        <Footer />
+    // <>
+    //   <TopProgressBar />
+    <div className='grid min-h-screen w-full grid-rows-header'>
+      <Header handleShowSidebar={handleShowSidebar} />
+      <div className='grid sm:grid-cols-1 md:grid-cols-sidebar'>
+        <Sidebar isOpen={isShowSidebar} activeSegment={segment} />
+        <div className='md:m-3 lg:m-5'>{props.children}</div>
       </div>
-    </>
+      <Footer />
+    </div>
+    // </>
   );
 };
 

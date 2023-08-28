@@ -8,7 +8,7 @@ interface IHeader {
 
 const Header = ({ handleShowSidebar }: IHeader) => {
   return (
-    <header className='flex flex-row items-center justify-between gap-5 border bg-gray-100 px-2 drop-shadow-md sm:px-8'>
+    <header className='header-container m-0 flex w-full flex-row items-center justify-between gap-5 bg-slate-900 px-2 sm:px-8'>
       <div>
         <Image
           priority
@@ -23,7 +23,7 @@ const Header = ({ handleShowSidebar }: IHeader) => {
         <AiOutlineSearch className='absolute z-10 py-5 pl-5' />
         <input
           placeholder='Search your favorite game...'
-          className='relative h-10 w-full rounded-md bg-gray-300 px-5 outline-none hover:bg-gray-200 focus:bg-gray-200'
+          className='relative h-10 w-full rounded-md bg-blue-50 px-5 outline-none hover:bg-blue-50 focus:bg-blue-50'
         />
       </div>
       <button className='md:hidden' onClick={handleShowSidebar}>
