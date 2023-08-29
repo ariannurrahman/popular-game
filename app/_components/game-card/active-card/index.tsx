@@ -59,7 +59,7 @@ export const ActiveCard = ({
         <div className='flex-column mt-3 flex flex-nowrap justify-center align-middle'>
           <button
             className={classNames({
-              'w-full py-3': true,
+              'w-full py-3 transition-all': true,
               'bg-slate-300 text-slate-700': true,
               'rounded-md text-sm font-semibold': true,
               'hover:border-2 hover:border-slate-300 hover:bg-slate-900 hover:text-slate-100 ':

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 
-import { NAV_LINK } from '@/contants';
+import { NAV_LINK } from '@/app/_constants';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -21,20 +21,22 @@ const Sidebar = ({ isOpen, activeSegment = null }: SidebarProps) => {
       })}
     >
       <nav className='top-0 md:sticky'>
-        <ul className='flex flex-col'>
+        <ul className='mt-3 flex flex-col gap-3 px-3'>
           {NAV_LINK.map(({ label, path, icon, url }) => (
             <Link
               key={label}
               href={path}
               className={classNames({
                 'flex justify-start px-5 py-3 text-left': true,
-                'hover:text-zinc-500 ': true,
-                underline: activeSegment === url,
+                'rounded-md  border-2': activeSegment === url,
+                'hover:rounded-md hover:border-2 hover:bg-slate-950': true,
               })}
             >
               <li className='flex flex-row items-center justify-start gap-5'>
                 <div>{icon()}</div>
-                <p className='md:text-md font-bold lg:text-lg'>{label}</p>
+                <p className='md:text-md lg:text-md font-bold hover:text-zinc-500'>
+                  {label}
+                </p>
               </li>
             </Link>
           ))}

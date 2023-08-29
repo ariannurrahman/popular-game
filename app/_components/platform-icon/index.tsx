@@ -1,5 +1,5 @@
 import { TPlatform } from '@/app/_types/platform';
-import { PARENT_PLATFORM_SLUG } from '@/app/_constant';
+import { PARENT_PLATFORM_SLUG } from '@/app/_constants';
 import Image from 'next/image';
 
 interface PlatformIconProps {

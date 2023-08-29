@@ -4,6 +4,7 @@ import React, { PropsWithChildren, useState } from 'react';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
 import { Footer, Header, Sidebar, TopProgressBar } from '..';
+import PageLayout from './PageLayout';
 
 const DashboardLayout = (props: PropsWithChildren) => {
   const [isShowSidebar, setIsShowSidebar] = useState(true);
@@ -19,7 +20,7 @@ const DashboardLayout = (props: PropsWithChildren) => {
       <Header handleShowSidebar={handleShowSidebar} />
       <div className='grid sm:grid-cols-1 md:grid-cols-sidebar'>
         <Sidebar isOpen={isShowSidebar} activeSegment={segment} />
-        <div className='md:m-3 lg:m-5'>{props.children}</div>
+        <PageLayout>{props.children}</PageLayout>
       </div>
       <Footer />
     </div>

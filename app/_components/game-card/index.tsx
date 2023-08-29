@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { isMobile } from 'react-device-detect';
-
-import { IGameResults } from '@/app/_types/games';
+import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { PlatformIcon, Rating, Slideshow } from '..';
+
+import { IGameResults } from '@/app/_types/games';
 import { TPlatform } from '@/app/_types/platform';
 import { ActiveCard } from './active-card';
-import Link from 'next/link';
+import { PlatformIcon, Rating, Slideshow } from '..';
 
 interface GameCardProps {
   data: IGameResults;
@@ -17,7 +17,7 @@ interface GameCardProps {
 
 const IMAGE_HEIGHT = 'h-56'; // 14 rem
 
-const GameCard = ({ data }: GameCardProps) => {
+function GameCard({ data }: GameCardProps) {
   const [activeCard, setActiveCard] = useState<IGameResults | undefined>();
   const isActiveCard = useMemo(() => {
     return activeCard?.id === data.id;
@@ -115,6 +115,6 @@ const GameCard = ({ data }: GameCardProps) => {
       )}
     </div>
   );
-};
+}
 
 export { GameCard };

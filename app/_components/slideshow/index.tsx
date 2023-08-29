@@ -1,13 +1,13 @@
 'use client';
-
-import Slider from 'react-slick';
-
 import 'slick-carousel/slick/slick.css';
-import Image from 'next/image';
-import { ShortScreenshot } from '@/app/_types/games';
-
 import 'slick-carousel/slick/slick-theme.css';
 import './style.scss';
+
+import Slider from 'react-slick';
+import Image from 'next/image';
+
+import { ShortScreenshot } from '@/app/_types/games';
+
 interface SlideshowProps {
   data: ShortScreenshot[];
 }
