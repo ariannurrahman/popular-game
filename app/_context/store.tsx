@@ -3,34 +3,49 @@
 import {
   createContext,
   useContext,
-  Dispatch,
-  SetStateAction,
   useState,
+  PropsWithChildren,
   ChangeEvent,
+  useEffect,
 } from 'react';
 
-type SearchContextType = {
-  query: string;
-};
-
 interface SearchContextProps {
-  setQuery: Dispatch<SetStateAction<string>>;
+  onChangeQuery: (e: ChangeEvent<HTMLInputElement>) => void;
   query: string;
 }
 
 const SearchContext = createContext<SearchContextProps>({
-  setQuery: (): string => '',
+  onChangeQuery: () => {},
   query: '',
 });
 
-export const SearchContextProvider = ({ children }: any) => {
+export const SearchContextProvider = (props: PropsWithChildren) => {
   const [query, setQuery] = useState('');
 
+  const onChangeQuery = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
-    <SearchContext.Provider value={{ query, setQuery }}>
-      {children}
+    <SearchContext.Provider value={{ query, onChangeQuery }}>
+      {props.children}
     </SearchContext.Provider>
   );
 };
 
 export const useSearchContext = () => useContext(SearchContext);
+
+// const url = useCallback(() => {
+//   const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
+//   if (query) {
+//     current.set('search', query);
+//   }
+//   const search = current.toString();
+//   const searchQuery = query ? `?${search}` : '';
+
+//   router.push(`${pathname}${searchQuery}`);
+// }, [query, searchParams, pathname, router]);
+
+// useEffect(() => {
+//   url();
+// }, [url]);

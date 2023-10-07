@@ -12,7 +12,7 @@ interface IHeader {
 }
 
 const Header = ({ handleShowSidebar }: IHeader) => {
-  const { query, setQuery } = useSearchContext();
+  const { query, onChangeQuery } = useSearchContext();
 
   return (
     <header className='header-container m-0 flex flex-row items-center justify-between gap-5 border-b-2 border-b-slate-600 bg-slate-900 px-2  sm:px-8'>
@@ -33,7 +33,7 @@ const Header = ({ handleShowSidebar }: IHeader) => {
           </div>
           <input
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={onChangeQuery}
             placeholder='Search your favorite game...'
             className={classNames({
               'relative h-10 w-full border-b-2 border-b-slate-600 bg-transparent pl-9 outline-none ':

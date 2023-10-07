@@ -1,10 +1,10 @@
 import format from 'date-fns/format';
 
-import { IGameResults } from '@/app/_types/games';
+import { GameResult } from '@/app/_types/games';
 import classNames from 'classnames';
 
 interface ActiveCardProps {
-  data: IGameResults | undefined;
+  data: GameResult | undefined;
   isActive: boolean;
   imgHeight: string;
   onClickViewLess: () => void;

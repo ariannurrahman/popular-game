@@ -1,6 +1,6 @@
 import { TPlatform } from './platform';
 
-export interface IGames {
+export interface Games {
   count: number;
   description: string;
   filters: Filters;
@@ -9,7 +9,7 @@ export interface IGames {
   nofollow_collections: string[];
   noindex: boolean;
   previous: null;
-  results: IGameResults[];
+  results: GameResult[];
   seo_description: string;
   seo_h1: string;
   seo_keywords: string;
@@ -36,7 +36,7 @@ export interface YearYear {
   year: number;
 }
 
-export interface IGameResults {
+export interface GameResult {
   added: number;
   added_by_status: AddedByStatus;
   background_image: string;

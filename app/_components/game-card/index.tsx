@@ -6,19 +6,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
 
-import { IGameResults } from '@/app/_types/games';
+import { GameResult } from '@/app/_types/games';
 import { TPlatform } from '@/app/_types/platform';
 import { ActiveCard } from './active-card';
 import { PlatformIcon, Rating, Slideshow } from '..';
 
 interface GameCardProps {
-  data: IGameResults;
+  data: GameResult;
 }
 
 const IMAGE_HEIGHT = 'h-56'; // 14 rem
 
 function GameCard({ data }: GameCardProps) {
-  const [activeCard, setActiveCard] = useState<IGameResults | undefined>();
+  const [activeCard, setActiveCard] = useState<GameResult | undefined>();
   const isActiveCard = useMemo(() => {
     return activeCard?.id === data.id;
   }, [data, activeCard?.id]);
@@ -49,7 +49,7 @@ function GameCard({ data }: GameCardProps) {
         'rounded-b-lg rounded-t-lg shadow-md': true,
         'scale-y-105 rounded-b-none shadow-lg': isActiveCard,
         'h-[340]px': isMobile,
-        'h-[330]px': !isMobile,
+        'h-full': !isMobile,
       })}
     >
       <div className='z-10'>
@@ -60,23 +60,27 @@ function GameCard({ data }: GameCardProps) {
             'h-56': !isActiveCard,
           })}
         >
-          {activeCard ? (
+          {activeCard &&
+          activeCard.short_screenshots.length > 0 &&
+          data?.background_image ? (
             <Slideshow data={activeCard?.short_screenshots} />
           ) : (
-            <Image
-              alt={data?.name}
-              className='h-full rounded-t-md object-cover'
-              height={0}
-              width={300}
-              loading='lazy'
-              src={data?.background_image}
-            />
+            data?.background_image && (
+              <Image
+                alt={data?.name}
+                className='h-full w-full rounded-t-md object-cover'
+                height={0}
+                width={300}
+                loading='lazy'
+                src={data?.background_image}
+              />
+            )
           )}
         </div>
-        <div className='px-5 py-3 text-center'>
+        <div className='h-full px-5 py-3 text-center'>
           <Link
             href={`/game/${data.id}`}
-            className='overflow-hidden text-ellipsis whitespace-nowrap font-bold text-slate-100 hover:text-slate-300'
+            className='overflow-hidden font-bold text-slate-100 hover:text-slate-300'
           >
             {data?.name}
           </Link>

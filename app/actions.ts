@@ -1,19 +1,20 @@
 'use server';
 
-import { IGames } from './_types/games';
+import { Games } from './_types/games';
 
-interface FetchGames {
+export interface FetchGames {
   page: number;
-  search?: string;
-  pageSize?: 10;
-  query?: string;
+  pageSize?: number;
+  query?: string | undefined;
 }
 
-export async function fetchGames({ page = 1, pageSize, query }: FetchGames) {
+export async function fetchGames({ page = 1, query }: FetchGames) {
+  const searchParams = query ? `&search=${query}` : '';
+
   const res = await fetch(
-    `https://api.rawg.io/api/games?page=${page}&page_size=${pageSize}&key=439740e4165a4a219d5331c543990dcc`,
-    { cache: 'force-cache' }
+    `https://api.rawg.io/api/games?page=${page}${searchParams}&key=439740e4165a4a219d5331c543990dcc`,
+    { cache: 'no-cache' }
   );
-  const data: IGames = await res.json();
+  const data: Games = await res.json();
   return { data };
 }
