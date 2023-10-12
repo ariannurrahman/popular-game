@@ -8,7 +8,7 @@ export interface FetchGames {
   query?: string | undefined;
 }
 
-export async function fetchGames({ page = 1, query }: FetchGames) {
+export async function fetchGames({ page = 0, query }: FetchGames) {
   const searchParams = query ? `&search=${query}` : '';
 
   const res = await fetch(
