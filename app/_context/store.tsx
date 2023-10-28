@@ -1,12 +1,12 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import {
   createContext,
   useContext,
   useState,
   PropsWithChildren,
   ChangeEvent,
-  useEffect,
 } from 'react';
 
 interface SearchContextProps {
@@ -20,7 +20,8 @@ const SearchContext = createContext<SearchContextProps>({
 });
 
 export const SearchContextProvider = (props: PropsWithChildren) => {
-  const [query, setQuery] = useState('');
+  const searchParams = useSearchParams().get('query') ?? '';
+  const [query, setQuery] = useState(searchParams);
 
   const onChangeQuery = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -34,18 +35,3 @@ export const SearchContextProvider = (props: PropsWithChildren) => {
 };
 
 export const useSearchContext = () => useContext(SearchContext);
-
-// const url = useCallback(() => {
-//   const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
-//   if (query) {
-//     current.set('search', query);
-//   }
-//   const search = current.toString();
-//   const searchQuery = query ? `?${search}` : '';
-
-//   router.push(`${pathname}${searchQuery}`);
-// }, [query, searchParams, pathname, router]);
-
-// useEffect(() => {
-//   url();
-// }, [url]);
