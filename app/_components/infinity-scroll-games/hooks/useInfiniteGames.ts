@@ -20,7 +20,11 @@ export const useInfiniteGames = () => {
   } = useInfiniteQuery({
     queryKey: ['/games', debouncedQuery],
     queryFn: ({ pageParam = 1 }) => {
-      return fetchGames({ page: pageParam, query, pageSize: 10 });
+      return fetchGames({
+        page: pageParam,
+        query,
+        pageSize: QUERY_CONFIG.limit,
+      });
     },
     getNextPageParam: (lastPage, allPages) => {
       console.log('triggered?', lastPage?.data?.results?.length);

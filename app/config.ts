@@ -1,5 +1,5 @@
 export const QUERY_CONFIG = {
-  limit: 10,
+  limit: 9,
   page: 1,
 };
 
